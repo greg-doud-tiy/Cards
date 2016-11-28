@@ -7,6 +7,9 @@ namespace GregoryDoud {
         private int _decks;
         List<Card> cards = new List<Card>();
 
+        public void Shuffle() {
+            
+        }
         public Card Draw() {
             Card card = cards[0];
             cards.RemoveAt(0);
