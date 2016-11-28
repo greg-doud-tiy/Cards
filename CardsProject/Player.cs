@@ -5,9 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GregoryDoud {
+	/// <summary>
+	/// Represents a player in the card game
+	/// </summary>
 	public class Player {
+		/// <summary>
+		/// Player name.
+		/// </summary>
 		public string Name { get; set; }
+		/// <summary>
+		/// Collection of card in the player's hand
+		/// </summary>
 		public List<Card> Cards = new List<Card>();
+		/// <summary>
+		/// Causes all cards to be turned face up.
+		/// </summary>
 		public void ShowAllCards() {
 			foreach(Card card in Cards) {
 				if(!card.IsShowing()) {
@@ -15,6 +27,12 @@ namespace GregoryDoud {
 				}
 			}
 		}
+		/// <summary>
+		/// For Blackjack, figures the best hand
+		/// for the cards being held. Options occur only when
+		/// an ace (1 or 11) is held.
+		/// </summary>
+		/// <returns></returns>
 		public int BestHand() {
 			// a best hand is a total closest to 21
 			var bestHand = 0;
@@ -25,6 +43,10 @@ namespace GregoryDoud {
 			}
 			return bestHand;
 		}
+		/// <summary>
+		/// Determines if the player has a blackjack
+		/// </summary>
+		/// <returns></returns>
 		public bool HasBlackjack() {
 			// a player has Blackjack if any total is 21
 			foreach (var total in Total()) {
@@ -34,6 +56,10 @@ namespace GregoryDoud {
 			}
 			return false;
 		}
+		/// <summary>
+		/// Determines if the player has busted
+		/// </summary>
+		/// <returns></returns>
 		public bool HasBusted() {
 			// a player busts when all totals are > 21
 			foreach(var total in Total()) {
@@ -43,9 +69,20 @@ namespace GregoryDoud {
 			}
 			return true;
 		}
+		/// <summary>
+		/// Add the card to the player hand.
+		/// </summary>
+		/// <param name="card"></param>
 		public void Add(Card card) {
 			Cards.Add(card);
 		}
+		/// <summary>
+		/// Calculates the cards total for Blackjack.
+		/// 
+		/// Note: it does NOT count cards that are 
+		/// face down.
+		/// </summary>
+		/// <returns></returns>
 		public IEnumerable<int> Total() {
 			List<int> totals = new List<int>() { 0 };
 			foreach(Card card in this.Cards) {
@@ -69,6 +106,10 @@ namespace GregoryDoud {
 			}
 			return totals.ToArray();
 		}
+		/// <summary>
+		/// Constructor. Initializes a player with a name
+		/// </summary>
+		/// <param name="name"></param>
 		public Player(string name) {
 			this.Name = name;
 		}
