@@ -52,7 +52,7 @@ namespace GregoryDoud {
 				if(!card.IsShowing()) { // skip it
 					continue; 
 				}
-				if(card.Number == Number.Ace) {
+				if(card.Rank == Rank.Ace) {
 					totals.AddRange(totals.ToArray());
 					for(var idx = 0; idx < totals.Count; idx++) {
 						if (idx % 2 == 0) { // even
