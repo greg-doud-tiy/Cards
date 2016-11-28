@@ -9,7 +9,7 @@ namespace GregoryDoud {
 	public class PseudoRandom {
 		static Random rnd = null;
 		/// <summary>
-		/// Returns a sequence of ints in random order
+		/// Returns a sequence of ints from 1 to max inclusive in random order
 		/// </summary>
 		public static int[] GetIntSequence(int max = int.MaxValue) {
 			List<int> ints = new List<int>();

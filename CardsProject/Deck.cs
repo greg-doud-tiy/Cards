@@ -8,9 +8,27 @@ namespace GregoryDoud {
         List<Card> cards = new List<Card>();
 
         public void Shuffle() {
-            
-        }
-        public Card Draw() {
+			List<Card> unshuffledCards = new List<Card>(cards);
+			List<Card> shuffledCards = new List<Card>();
+			int[] rndInts = PseudoRandom.GetIntSequence(52);
+			foreach(int rndInt in rndInts) {
+				shuffledCards.Add(unshuffledCards[rndInt - 1]);
+			}
+			this.cards = shuffledCards;
+		}
+		public ICollection<Card> Draw(int nbr = 1) {
+			List<Card> cards = new List<Card>();
+			for(int idx = 0; idx < nbr; idx++) {
+				cards.Add(Draw());
+			}
+			return cards.ToArray();
+		}
+		public Card DrawFaceUp() {
+			Card card = Draw();
+			card.Flip();
+			return card;
+		}
+		public Card Draw() {
             Card card = cards[0];
             cards.RemoveAt(0);
             return card;
