@@ -1,7 +1,8 @@
 ﻿using System;
 namespace GregoryDoud {
-    /// <summary>
-	/// This is a playing card.
+
+	/// <summary>
+	/// This models a card as in a deck of cards
 	/// </summary>
     public class Card {
 		/// <summary>
